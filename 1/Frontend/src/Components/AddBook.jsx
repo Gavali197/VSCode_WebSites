@@ -11,15 +11,6 @@ const AddBook = () => {
 
   const [get, setget] = useState([]);
 
- /**
-  * 1
-  * 2
-  * 3
-  * 4
-  * 5
-  */
-  
-
   const [error, seterror] = useState("");
 
   const API = "http://localhost:4000/api/v2";
@@ -51,8 +42,6 @@ const AddBook = () => {
     if (!Form.Title || !Form.Description || !Form.Author || !Form.Price) {
       seterror("Filed All form");
     }
-
-    //Initial Commit 
 
     try {
       const res = await fetch(`${API}/bookpost`, {
@@ -110,7 +99,7 @@ const AddBook = () => {
         Price{" "}
         <input
           type="text"
-          value={Form.Price}
+          value={Form.Price} 
           onChange={handleOnchange}
           name="Price"
         />
@@ -147,3 +136,4 @@ const AddBook = () => {
 };
 
 export default AddBook;
+
