@@ -17,3 +17,5 @@ console.log("great");
 }else{
 console.log("small");
 }
+
+//add details
