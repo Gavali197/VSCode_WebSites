@@ -21,4 +21,5 @@ console.log("small");
 //add details
 
 let x;
+let y;
 
