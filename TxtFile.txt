@@ -30,3 +30,7 @@ let z;
 
 if x is great then y ..!
 
+const p = 16;
+
+console.log(p);
+
