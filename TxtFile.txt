@@ -22,7 +22,5 @@ console.log("small");
 
 let x;
 let y;
-let z;
-
 
 
