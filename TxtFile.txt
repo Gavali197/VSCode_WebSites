@@ -18,7 +18,5 @@ console.log("great");
 console.log("small");
 }
 
-//add details
-
 
 
