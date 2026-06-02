@@ -12,11 +12,5 @@ let sum = a + b;
 
 console.log(sum);
 
-if(a > b){
-console.log("great");
-}else{
-console.log("small");
-}
-
 
 
