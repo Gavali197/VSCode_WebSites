@@ -8,7 +8,5 @@ const a = 56;
 
 const b = 64;
 
-let sum = a + b;
-
 
 
