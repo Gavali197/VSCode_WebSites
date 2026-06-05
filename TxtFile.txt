@@ -6,7 +6,5 @@ const app = express();
 
 const a = 56;
 
-const b = 64;
-
 
 
