@@ -4,7 +4,5 @@ const app = express();
 
 //27 April commit
 
-const a = 56;
-
 
 
