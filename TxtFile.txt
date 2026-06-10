@@ -2,7 +2,5 @@ const express = require("express");
 
 const app = express();
 
-//27 April commit
-
 
 
