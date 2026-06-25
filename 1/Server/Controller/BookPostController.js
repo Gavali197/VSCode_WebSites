@@ -43,22 +43,7 @@ exports.PostUser = async (req, res, next)=>{
     }
 }
 
-exports.PostStaff = async (req, res, next) =>{
-    try{
-        const post  = await Staffs.create(req.body);
 
-        if(!post){
-            return res.status(401).json({
-                message :"Not add Staff"
-            })
-        }
-
-        res.json(post);
-    }catch(err) {
-        console.log(err);
-        console.log("Error from post");
-    }
-}
 
 exports.getStaff = async (req, res, next) =>{
     try{
