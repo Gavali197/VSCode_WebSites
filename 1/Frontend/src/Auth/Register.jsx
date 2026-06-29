@@ -18,8 +18,10 @@ export const Register = () => {
     setform({ ...form, [name]: value });
   };
 
-  const handleForm = (e) => {
-    e.prevantDefault();
+  //    //localhost:4000/api/v2/register
+  const API = "http://localhost:4000/api/v2";
+  const handleForm = async(e) => {
+    e.preventDefault();
 
     if (
       !form.username ||
@@ -41,11 +43,41 @@ export const Register = () => {
       return seterror("Email is not Valid");
     }
 
-    if (form.password != form.cpassword) {
+    if (form.password !== form.cpassword) {
       return seterror("password does not match");
     }
+    try{
+      const res = await fetch(`${API}/register`, {
+        method:"POST",
+        headers:{
+          "Content-Type" : "application/json",
+        },
+        body: JSON.stringify({
+          name : form.username,
+          email : form.Email,
+          password : form.password,
+          dateOfBrith :form.Dob,
+          Gender : form.Gender
+        })
+      });
 
-    seterror("");
+      const data = await res.json()
+
+      console.log("STATUS :", res.status);
+      console.log("DATA : ", data);
+
+      if(!res.ok){
+        seterror(data.message)
+        return;
+      }
+
+      alert("Successfully")
+      seterror("");
+    }catch(err){
+      console.log(err);
+      seterror("Server Error")
+    }
+
 
     // navigate("/login");
   };
