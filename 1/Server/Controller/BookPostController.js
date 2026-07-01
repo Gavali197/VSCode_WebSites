@@ -29,6 +29,8 @@ exports.GetBook = async(req, res, next)=>{
     }
 }
 
+//post user with data base
+
 exports.PostUser = async (req, res, next)=>{
     try{
         const post = await user.create(req.body);
