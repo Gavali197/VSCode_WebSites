@@ -1,5 +1,6 @@
 const book = require("../Models/BookModel");
 const user = require("../Models/UserModel");
+const Staffs = require("../Models/Staffs")
 
 exports.PostBook = async (req, res, next)=>{
     try{
@@ -39,5 +40,22 @@ exports.PostUser = async (req, res, next)=>{
         res.json(post);
     }catch(err){
         next(err)
+    }
+}
+
+exports.PostStaff = async (req, res, next) =>{
+    try{
+        const post  = await Staffs.create(req.body);
+
+        if(!post){
+            return res.status(401).json({
+                message :"Not add Staff"
+            })
+        }
+
+        res.json(post);
+    }catch(err) {
+        console.log(err);
+        console.log("Error from post");
     }
 }
