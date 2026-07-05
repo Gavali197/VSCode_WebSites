@@ -1,8 +1,8 @@
 const express = require("express");
+const app = express();
 const dbConnect = require("./Utils/Db");
 const errorHandler = require("./Middleware/Error");
 const router = require("./Routers/BooksRouters");
-const app = express();
 const PORT = 4000;
 const cors = require("cors")
 // const cors = require("cors")

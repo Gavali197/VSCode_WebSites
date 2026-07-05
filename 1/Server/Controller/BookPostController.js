@@ -59,3 +59,17 @@ exports.PostStaff = async (req, res, next) =>{
         console.log("Error from post");
     }
 }
+
+exports.getStaff = async (req, res, next) =>{
+    try{
+        const Get = await Staffs.find();
+        if(!Get){
+            return res.status(401).json({
+                message :"Not Found"
+            })
+        }
+        res.json(Get)
+    }catch(err){
+        next(err)
+    }
+}
