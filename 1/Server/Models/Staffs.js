@@ -18,4 +18,6 @@ const StaffSchema = new mongoose.Schema({
     }
 })
 
+//Intially handle device
+
 module.exports = mongoose.model("StaffRecord", StaffSchema);
