@@ -16,8 +16,6 @@ const ViewStaff = () => {
        }
     }
 
-    //handle event by user side 
-
     useEffect(()=>{
       getStaff();
     }, [])
