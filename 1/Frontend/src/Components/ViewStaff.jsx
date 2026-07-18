@@ -16,7 +16,9 @@ const ViewStaff = () => {
        }
     }
 
-
+    useEffect(()=>{
+      getStaff();
+    }, [])
   return (
     <div>
         <select value={select} onChange={(e)=> setselect(e.target.value)}>
