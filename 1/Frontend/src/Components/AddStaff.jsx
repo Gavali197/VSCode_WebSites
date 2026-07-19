@@ -7,7 +7,7 @@ const AddStaff = () => {
         Salary :"",
         Age :"",
         Phone :""
-    })
+    });
 
     const [error, seterror] = useState("");
 
@@ -33,7 +33,8 @@ const AddStaff = () => {
             "Content-Type" : "application/json"
           },
           body : JSON.stringify(form)
-        })
+        });
+
 
         const data = await res.json();
 
