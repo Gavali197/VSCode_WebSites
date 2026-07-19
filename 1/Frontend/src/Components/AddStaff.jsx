@@ -51,7 +51,7 @@ const AddStaff = () => {
   return (
     <div>
       <form onSubmit={handleFormSubmit}>
-        name: <input type="text" value={form.Name} name='Name' onChange={handleOnchange} />
+        Name: <input type="text" value={form.Name} name='Name' onChange={handleOnchange} />
         Salary : <input type="text" value={form.Salary } name='Salary' onChange={handleOnchange} />
         Age : <input type="text" value={form.Age} name='Age' onChange={handleOnchange} />
         Phone : <input type="text" value={form.Phone} name='Phone' onChange={handleOnchange} />
