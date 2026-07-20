@@ -3,7 +3,7 @@ import { useState } from 'react'
 
 const ViewStaff = () => {
     const [select, setselect] = useState("");
-    const [staff, setstaff] = useState([])
+    const [staff, setstaff] = useState([]);
     const API = "http://localhost:4000/api/v2/staffpost"
     const getStaff = async () =>{
        try{

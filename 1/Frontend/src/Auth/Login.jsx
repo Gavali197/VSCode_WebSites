@@ -8,7 +8,8 @@ export const Login = () => {
     })
 
     const [error, seterror] = useState("");
-    // const navigate = useNavigate();
+    
+    //const navigate = useNavigate();
 
     const handleOnchange= (e)=>{
         const {name, value} = e.target;
