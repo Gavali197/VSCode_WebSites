@@ -14,12 +14,12 @@ const AddBook = () => {
   const [error, seterror] = useState("");
 
   const API = "http://localhost:4000/api/v2";
-
+  
   const handleOnchange = (e) => {
     const { name, value } = e.target;
     setform({ ...Form, [name]: value });
   };
-
+  
   const getBook = async () => {
     try {
       const res = await fetch(`${API}/bookget`);
@@ -31,7 +31,7 @@ const AddBook = () => {
       seterror("Failed TO get data");
     }
   };
-
+  
   useEffect(() => {
     getBook();
   }, []);
@@ -136,4 +136,3 @@ const AddBook = () => {
 };
 
 export default AddBook;
-
