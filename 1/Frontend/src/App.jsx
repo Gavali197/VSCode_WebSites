@@ -4,6 +4,7 @@ import { Login } from './Auth/Login'
 import { Register } from './Auth/Register'
 import AddBook from './Components/AddBook'
 import AddStaff from './Components/AddStaff'
+import HelloUser from './Components/HelloUser'
 
 function App() {
 
@@ -15,6 +16,7 @@ function App() {
       <Route path='/register' element={<Register />} />
       <Route path='/addbook' element={<AddBook  />} />
       <Route path='/addstaff' element={<AddStaff  />} />
+      <Route path='/hello' element={<HelloUser  />} />
      </Routes>
      </BrowserRouter>
     </>

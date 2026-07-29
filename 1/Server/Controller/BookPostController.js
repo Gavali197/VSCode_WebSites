@@ -73,3 +73,25 @@ exports.getStaff = async (req, res, next) =>{
         next(err)
     }
 }
+
+exports.updateStaff = async(req, res, next) =>{
+    try{
+        const staffId = req.params.id;
+
+        const updatedStaff = await Staffs.findByIdAndUpdate(
+            staffId.
+            req.body,
+          { new: true, runValidators: true } // 'new: true' returns the updated document instead of the old one
+        );
+
+        if(!updatedStaff){
+            return res.status(404).json({
+                message : "Not found"
+            })
+        }
+
+        res.json(updatedStaff);
+    }catch(err){
+        next(err)
+    }
+}
