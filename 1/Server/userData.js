@@ -1,4 +1,4 @@
-const userData = [{ "id": 1, "name": "Alvan Rittelmeyer", "dateOfBrith": "8/8/2004", "email": "arittelmeyer0@soup.io", "password": "dW0~Fu5>CYvr,", "Gender": "Male" },
+const SampleListing = [{ "id": 1, "name": "Alvan Rittelmeyer", "dateOfBrith": "8/8/2004", "email": "arittelmeyer0@soup.io", "password": "dW0~Fu5>CYvr,", "Gender": "Male" },
 { "id": 2, "name": "Lesly Hymor", "dateOfBrith": "12/30/1987", "email": "lhymor1@prweb.com", "password": "pD6`G=n)TW", "Gender": "Female" },
 { "id": 3, "name": "Herrick Idel", "dateOfBrith": "5/9/1997", "email": "hidel2@rediff.com", "password": "wB8/bLlUHm", "Gender": "Male" },
 { "id": 4, "name": "Ronnie Borges", "dateOfBrith": "3/27/1987", "email": "rborges3@samsung.com", "password": "pU2\\mdF4yBSs", "Gender": "Male" },
@@ -99,4 +99,4 @@ const userData = [{ "id": 1, "name": "Alvan Rittelmeyer", "dateOfBrith": "8/8/20
 { "id": 99, "name": "Jodi Towner", "dateOfBrith": "10/8/2004", "email": "jtowner2q@mayoclinic.com", "password": "rZ6_WB8Rzc@%~", "Gender": "Male" },
 { "id": 100, "name": "Atlanta Fripps", "dateOfBrith": "4/29/1995", "email": "afripps2r@ocn.ne.jp", "password": "dX3?gG7i#~2q)PT4", "Gender": "Female" }]
 
-module.exports = UserData
+module.exports = SampleListing
