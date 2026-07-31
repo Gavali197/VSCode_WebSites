@@ -43,12 +43,25 @@ exports.PostUser = async (req, res, next)=>{
     }
 }
 
+exports.GetUsers = async (req, res, next)=>{
+    try{
+        const post = await user.find();
+        if(!post){
+            return res.status(404).json({
+                Message : "NOT FOUND"
+            })
+        }
+        res.json(post);
+    }catch(err){
+        next(err)
+    }
+}
 exports.PostStaff = async (req, res, next) =>{
     try{
         const post  = await Staffs.create(req.body);
 
         if(!post){
-            return res.status(401).json({
+            return res.status(404).json({
                 message :"Not add Staff"
             })
         }
@@ -64,7 +77,7 @@ exports.getStaff = async (req, res, next) =>{
     try{
         const Get = await Staffs.find();
         if(!Get){
-            return res.status(401).json({
+            return res.status(404).json({
                 message :"Not Found"
             })
         }

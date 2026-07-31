@@ -3,26 +3,26 @@ const userModel = require("../Models/UserModel");
 const SampleListing = require("../userData");
 const dbConnect = require("../Utils/Db");
 
-    const initializeDatabase = async() =>{
-try{
-    await dbConnect();
-    console.log("Connection Successfully with database");
-    
-    await userModel.deleteMany({});
-    console.log("cleaning database");
+const initializeDatabase = async () => {
+    try {
+        await dbConnect();
+        console.log("Connection Successfully with database");
 
-    await userModel.insertMany(SampleListing);
-    console.log("successfully store data in database...!");
+        await userModel.deleteMany({});
+        console.log("cleaning database");
 
-    mongoose.connection.close();
-    process.exit(1);
+        await userModel.insertMany(SampleListing);
+        console.log("successfully store data in database...!");
 
-    
-    
-}catch(err){
-    console.error(err, "Error from server side");
-    process.exit(1);
-}
+        mongoose.connection.close();
+        process.exit(1);
+
+
+
+    } catch (err) {
+        console.error(err, "Error from server side");
+        process.exit(1);
+    }
 }
 
 initializeDatabase();
