@@ -1,23 +1,23 @@
-const mongoose = require("mongoose");
+    const mongoose = require("mongoose");
 
-const StaffSchema = new mongoose.Schema({
-    Name : {
-        type : "string"
-    },
+    const StaffSchema = new mongoose.Schema({
+        Name : {
+            type : String
+        },
 
-    Salary :{
-        type : "String"
-    },
+        Salary :{
+            type : String
+        },
 
-    Age : {
-        type : "String"
-    },
+        Age : {
+            type : String
+        },
 
-    Phone : {
-        type : "string"
-    }
-})
+        Phone : {
+            type : String
+        }
+    })
 
-//Intially handle device
+    //Intially handle device
 
-module.exports = mongoose.model("StaffRecord", StaffSchema);
+    module.exports = mongoose.model("StaffRecord", StaffSchema);

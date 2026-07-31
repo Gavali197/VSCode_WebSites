@@ -2,15 +2,15 @@ const mongoose = require("mongoose");
 
 const ReviewSchema = new mongoose.Schema({
     writerName: {
-        type: "string"
+        type: String
     },
 
     Date: {
-        type: "string"
+        type: String
     },
 
     Review: {
-        type: "string"
+        type: String
     }
 
 })
