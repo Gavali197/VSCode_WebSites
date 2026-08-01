@@ -2,132 +2,132 @@ const book = require("../Models/BookModel");
 const user = require("../Models/UserModel");
 const Staffs = require("../Models/Staffs")
 
-exports.PostBook = async (req, res, next)=>{
-    try{
+exports.PostBook = async (req, res, next) => {
+    try {
         const post = await book.create(req.body);
-        if(!post){
+        if (!post) {
             return res.status(401).json({
-                Message : "NOT FOUND"
+                Message: "NOT FOUND"
             })
         }
         res.json(post);
-    }catch(err){
+    } catch (err) {
         next(err)
     }
 }
 
-exports.GetBook = async(req, res, next)=>{
-    try{
+exports.GetBook = async (req, res, next) => {
+    try {
         const get = await book.find();
-        if(!get){
+        if (!get) {
             return res.status(401).json({
-                message : "NOT FOUND"
+                message: "NOT FOUND"
             })
         }
         res.json(get);
-    }catch(err){
+    } catch (err) {
         next(err)
     }
 }
-exports.PostUser = async (req, res, next)=>{
-    try{
+exports.PostUser = async (req, res, next) => {
+    try {
         const post = await user.create(req.body);
-        if(!post){
+        if (!post) {
             return res.status(401).json({
-                Message : "NOT FOUND"
+                Message: "NOT FOUND"
             })
         }
         res.json(post);
-    }catch(err){
+    } catch (err) {
         next(err)
     }
 }
 
-exports.GetUsers = async (req, res, next)=>{
-    try{
+exports.GetUsers = async (req, res, next) => {
+    try {
 
         const post = await user.find();
-      
 
-        if(!post){
+
+        if (!post) {
             return res.status(404).json({
-                Message : "NOT FOUND"
+                Message: "NOT FOUND"
             })
         }
         res.json(post);
-    }catch(err){
+    } catch (err) {
         next(err)
     }
 }
 
 
-exports.UserFindById = async() =>{
-  try{
-      const id = req.params.id;
-    const foundId = await user.findById();
+exports.UserFindById = async (req, res, next) => {
+    try {
+        const id = req.params.id;
+        const foundId = await user.findById(id);
 
-    if(!foundId){
-        return res.status(404).json({
-            message : "User Not Found"
-        })
+        if (!foundId) {
+            return res.status(404).json({
+                message: "User Not Found"
+            })
+        }
+
+        res.status(200).json(foundId);
+    } catch (err) {
+        next(err)
     }
-
-    res.status(200).json(foundId);
-  }catch(err){
-    next(err)
-  }
 }
 
 
-exports.PostStaff = async (req, res, next) =>{
-    try{
-        const post  = await Staffs.create(req.body);
+exports.PostStaff = async (req, res, next) => {
+    try {
+        const post = await Staffs.create(req.body);
 
-        if(!post){
+        if (!post) {
             return res.status(404).json({
-                message :"Not add Staff"
+                message: "Not add Staff"
             })
         }
 
         res.json(post);
-    }catch(err) {
+    } catch (err) {
         console.log(err);
         console.log("Error from post");
     }
 }
 
-exports.getStaff = async (req, res, next) =>{
-    try{
+exports.getStaff = async (req, res, next) => {
+    try {
         const Get = await Staffs.find();
-        if(!Get){
+        if (!Get) {
             return res.status(404).json({
-                message :"Not Found"
+                message: "Not Found"
             })
         }
         res.json(Get)
-    }catch(err){
+    } catch (err) {
         next(err)
     }
 }
 
-exports.updateStaff = async(req, res, next) =>{
-    try{
+exports.updateStaff = async (req, res, next) => {
+    try {
         const staffId = req.params.id;
 
         const updatedStaff = await Staffs.findByIdAndUpdate(
             staffId.
-            req.body,
-          { new: true, runValidators: true } // 'new: true' returns the updated document instead of the old one
+                req.body,
+            { new: true, runValidators: true } // 'new: true' returns the updated document instead of the old one
         );
 
-        if(!updatedStaff){
+        if (!updatedStaff) {
             return res.status(404).json({
-                message : "Not found"
+                message: "Not found"
             })
         }
 
         res.json(updatedStaff);
-    }catch(err){
+    } catch (err) {
         next(err)
     }
 }

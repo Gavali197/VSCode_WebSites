@@ -9,7 +9,7 @@ const { PostBook,
     getStaff, 
     updateStaff, 
     GetUsers,
-    UserFindByIdindById } = require("../Controller/BookPostController");
+    UserFindById } = require("../Controller/BookPostController");
 
 router.put("/updateStaff", updateStaff)
 router.post("/bookpost", PostBook);
@@ -17,7 +17,9 @@ router.get("/bookget", GetBook);
 router.post("/register", PostUser);
 router.post("/staffpost", PostStaff);
 router.get("/viewstaff", getStaff)
-router.get("/userlist/", bookController.GetUsers);
+router.get("/userlist", GetUsers);
+router.get("/userlist/:id", UserFindById);
+
 
 
 module.exports = router
