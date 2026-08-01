@@ -45,7 +45,10 @@ exports.PostUser = async (req, res, next)=>{
 
 exports.GetUsers = async (req, res, next)=>{
     try{
+
         const post = await user.find();
+      
+
         if(!post){
             return res.status(404).json({
                 Message : "NOT FOUND"
@@ -56,6 +59,26 @@ exports.GetUsers = async (req, res, next)=>{
         next(err)
     }
 }
+
+
+exports.UserFindById = async() =>{
+  try{
+      const id = req.params.id;
+    const foundId = await user.findById();
+
+    if(!foundId){
+        return res.status(404).json({
+            message : "User Not Found"
+        })
+    }
+
+    res.status(200).json(foundId);
+  }catch(err){
+    next(err)
+  }
+}
+
+
 exports.PostStaff = async (req, res, next) =>{
     try{
         const post  = await Staffs.create(req.body);
