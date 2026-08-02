@@ -1,6 +1,8 @@
 const book = require("../Models/BookModel");
 const user = require("../Models/UserModel");
-const Staffs = require("../Models/Staffs")
+const Staffs = require("../Models/Staffs");
+
+
 
 exports.PostBook = async (req, res, next) => {
     try {
@@ -96,6 +98,7 @@ exports.PostStaff = async (req, res, next) => {
     }
 }
 
+
 exports.getStaff = async (req, res, next) => {
     try {
         const Get = await Staffs.find();
@@ -110,22 +113,21 @@ exports.getStaff = async (req, res, next) => {
     }
 }
 
+
 exports.updateStaff = async (req, res, next) => {
     try {
         const staffId = req.params.id;
-
         const updatedStaff = await Staffs.findByIdAndUpdate(
             staffId.
                 req.body,
-            { new: true, runValidators: true } // 'new: true' returns the updated document instead of the old one
+            { new: true, runValidators: true }
+            // 'new: true' returns the updated document instead of the old one
         );
-
         if (!updatedStaff) {
             return res.status(404).json({
                 message: "Not found"
             })
         }
-
         res.json(updatedStaff);
     } catch (err) {
         next(err)
