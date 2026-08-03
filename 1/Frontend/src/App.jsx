@@ -8,6 +8,7 @@ import HelloUser from "./Components/HelloUser";
 import UserList from "./Components/UserList";
 import UserInterface from "./Components/UserInterface";
 import ProtectRoute from "./Auth/ProtectRoute";
+import Dashboard from "./Components/Dashboard";
 
 function App() {
   return (
@@ -17,10 +18,12 @@ function App() {
           <Route path="/" element={<Login />} />
           <Route path="/register" element={<Register />} />
 
-          <Route element={ProtectRoute}>
+          <Route element={<ProtectRoute />}>
             <Route path="/addbook" element={<AddBook />} />
             <Route path="/addstaff" element={<AddStaff />} />
             <Route path="/userlist" element={<UserList />} />
+            <Route path="/dashboard" element={<Dashboard />} />
+
             <Route path="/userlist/:id" element={<UserInterface />} />
           </Route>
         </Routes>
