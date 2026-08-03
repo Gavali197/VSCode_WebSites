@@ -28,7 +28,7 @@ export const Login = () => {
         if(!form.email || !form.password){
             seterror("fill all field")
         }
-        localStorage.setItem("token", response.data.token);
+        // localStorage.setItem("token", response.data.token);
         navigate("/dashboard");
     }
   return (
