@@ -45,13 +45,12 @@ export const Login = () => {
       const data = await res.json();
 
       if (res.ok) {
-        localStorage.setItem("token", data.token);
+       localStorage.setItem("token", data.token);
         navigate("/dashboard");
       } else {
         seterror(data.message);
       }
 
-      localStorage.setItem("token", response.data.token);
     } catch (err) {
       console.error(err);
     }

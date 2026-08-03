@@ -7,9 +7,10 @@ const Dashboard = () => {
       <h2>Welcome</h2>
       <p>{user?.email}</p>
 
-      <a href="/addbook">Add Books</a>
-      <a href="/addstaff">Add New Staff</a>
-      <a href="/userlist">Show User's</a>
+      <a href="/addbook">Add Books</a><br />
+      <a href="/addstaff">Add New Staff</a><br />
+      <a href="/userlist">Show User's</a><br />
+      
     </div>
   );
 };
