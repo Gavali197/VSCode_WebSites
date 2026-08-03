@@ -5,6 +5,7 @@ const errorHandler = require("./Middleware/Error");
 const router = require("./Routers/BooksRouters");
 const PORT = 4000;
 const cors = require("cors");
+require("dotenv").config();
 
 dbConnect();
 
@@ -22,6 +23,6 @@ app.use(errorHandler)
 
 
 
-app.listen(PORT, ()=>{
+app.listen(process.env.PORT, ()=>{
     console.log(`Server Running Successfully On PORT : ${PORT}`);
 })

@@ -10,6 +10,7 @@ const { PostBook,
     updateStaff, 
     GetUsers,
     UserFindById } = require("../Controller/BookPostController");
+const { loginUser } = require("../Controller/UserController");
 
 router.put("/updateStaff", updateStaff)
 router.post("/bookpost", PostBook);
@@ -19,6 +20,7 @@ router.post("/staffpost", PostStaff);
 router.get("/viewstaff", getStaff)
 router.get("/userlist", GetUsers);
 router.get("/userlist/:id", UserFindById);
+router.post("/login", loginUser);
 
 
 
