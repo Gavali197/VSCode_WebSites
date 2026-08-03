@@ -9,19 +9,27 @@ export const Login = () => {
 
     const [error, seterror] = useState("");
     
-    //const navigate = useNavigate();
+    const navigate = useNavigate();
 
     const handleOnchange= (e)=>{
         const {name, value} = e.target;
         setform({...form, [name]:value})
     }
 
+    // const adminLogin = () => {
+    //     if(!form.email === "Admin@gmail.com" || !form.password === "Admin@123"){
+    //         return alert("admin not login")
+    //     }else{
+    //         navigate("/")
+    //     }
+    // }
+
     const handleForm =(e)=>{
         if(!form.email || !form.password){
             seterror("fill all field")
         }
-        
-        // navigate("/dashboard");
+        localStorage.setItem("token", response.data.token);
+        navigate("/dashboard");
     }
   return (
     <>
@@ -35,6 +43,7 @@ export const Login = () => {
         </div>
         {error && <p style={{color:"red"}}> {error}</p>}
     </form>
+    <a href="/register">New User</a>
     </>
 )
 }

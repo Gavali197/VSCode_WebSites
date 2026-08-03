@@ -14,12 +14,12 @@ const AddBook = () => {
   const [error, seterror] = useState("");
 
   const API = "http://localhost:4000/api/v2";
-  
+
   const handleOnchange = (e) => {
     const { name, value } = e.target;
     setform({ ...Form, [name]: value });
   };
-  
+
   const getBook = async () => {
     try {
       const res = await fetch(`${API}/bookget`);
@@ -31,12 +31,12 @@ const AddBook = () => {
       seterror("Failed TO get data");
     }
   };
-  
+
   useEffect(() => {
     getBook();
   }, []);
 
-  // Initial Commit 
+  // Initial Commit
 
   const handleForm = async (e) => {
     e.preventDefault();
@@ -59,7 +59,7 @@ const AddBook = () => {
         }),
       });
 
-      getBook();  
+      getBook();
       const data = await res.json();
       if (!res.ok) {
         seterror(data.message);
@@ -77,38 +77,37 @@ const AddBook = () => {
     <>
       <div className="container-bookadd">
         <form onSubmit={handleForm}>
-        Title{" "}
-        <input
-          type="text"
-          value={Form.Title}
-          onChange={handleOnchange}
-          name="Title"
-        />
-        Description{" "}
-        <input
-          type="text"
-          value={Form.Description}
-          onChange={handleOnchange}
-          name="Description"
-        />
-        Author{" "}
-        <input
-          type="text"
-          value={Form.Author}
-          onChange={handleOnchange}
-          name="Author"
-        />
-        Price{" "}
-        <input
-          type="text"
-          value={Form.Price} 
-          onChange={handleOnchange}
-          name="Price"
-        />
-        <button type="Submit">Add Book</button>
-        {error && <p style={{ color: "red" }}>{error}</p>}
-      </form>
-      
+          Title{" "}
+          <input
+            type="text"
+            value={Form.Title}
+            onChange={handleOnchange}
+            name="Title"
+          />
+          Description{" "}
+          <input
+            type="text"
+            value={Form.Description}
+            onChange={handleOnchange}
+            name="Description"
+          />
+          Author{" "}
+          <input
+            type="text"
+            value={Form.Author}
+            onChange={handleOnchange}
+            name="Author"
+          />
+          Price{" "}
+          <input
+            type="text"
+            value={Form.Price}
+            onChange={handleOnchange}
+            name="Price"
+          />
+          <button type="Submit">Add Book</button>
+          {error && <p style={{ color: "red" }}>{error}</p>}
+        </form>
       </div>
       <div className="detailed-container">
         <table cellPadding={10} border={1}>
@@ -122,7 +121,7 @@ const AddBook = () => {
           </thead>
 
           <tbody>
-            {get.map((item, index)=>(
+            {get.map((item, index) => (
               <tr key={index}>
                 <td>{item.Title}</td>
                 <td>{item.Description}</td>
