@@ -15,10 +15,19 @@ exports.loginUser = async (req, res, next) => {
         }
         const FindUser = await user.findOne({ email });
 
+        // const id = req.params.id;
+
+        // const findEmail = await user.findById()
+
+
         if (!FindUser) {
             return res.status(401).json({
                 success: false,
                 message: "Invalid email or password"
+            })
+        }else{
+            return res.status(401).json({
+                message : "Email is all ready Exits"
             })
         }
 
