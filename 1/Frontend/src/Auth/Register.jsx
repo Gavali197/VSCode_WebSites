@@ -78,6 +78,7 @@ export const Register = () => {
         }),
       });
 
+      
       const data = await res.json();
 
       console.log("STATUS :", res.status);
