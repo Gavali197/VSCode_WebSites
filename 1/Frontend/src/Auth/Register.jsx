@@ -17,17 +17,17 @@ export const Register = () => {
   const [message, setMessage] = useState("");
  const API = "http://localhost:4000/api/v2";
 
-   useEffect(() => {
-      fetch(`${API}/register`)
-        .then((res) => res.json())
-        .then((data) => {
-          setMessage(data.message);
-        })
-        .catch((err) => {
-          console.error(err);
-          setMessage(err);
-        });
-    }, []);
+  //  useEffect(() => {
+  //     fetch()
+  //       .then((res) => res.json())
+  //       .then((data) => {
+  //         setMessage(data.message);
+  //       })
+  //       .catch((err) => {
+  //         console.error(err);
+  //         setMessage(err);
+  //       });
+  //   }, []);
 
   const handleOnchange = (e) => {
     const { name, value } = e.target;
