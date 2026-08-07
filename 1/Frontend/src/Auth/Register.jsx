@@ -1,4 +1,5 @@
 import React from "react";
+import { useEffect } from "react";
 // import { usenavigate } from "react-router-dom";
 import { useState } from "react";
 
@@ -13,14 +14,28 @@ export const Register = () => {
   });
   // const navigate = usenavigate();
 
+  const [message, setMessage] = useState("");
+ const API = "http://localhost:4000/api/v2";
+
+   useEffect(() => {
+      fetch(`${API}/register`)
+        .then((res) => res.json())
+        .then((data) => {
+          setMessage(data.message);
+        })
+        .catch((err) => {
+          console.error(err);
+          setMessage(err);
+        });
+    }, []);
+
   const handleOnchange = (e) => {
     const { name, value } = e.target;
     setform({ ...form, [name]: value });
   };
 
   //    //localhost:4000/api/v2/register
-  const API = "http://localhost:4000/api/v2";
-  const handleForm = async(e) => {
+  const handleForm = async (e) => {
     e.preventDefault();
 
     if (
@@ -46,38 +61,39 @@ export const Register = () => {
     if (form.password !== form.cpassword) {
       return seterror("password does not match");
     }
-    try{
+
+   
+    try {
       const res = await fetch(`${API}/register`, {
-        method:"POST",
-        headers:{
-          "Content-Type" : "application/json",
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          name : form.username,
-          email : form.Email,
-          password : form.password,
-          dateOfBrith :form.Dob,
-          Gender : form.Gender
-        })
+          name: form.username,
+          email: form.Email,
+          password: form.password,
+          dateOfBrith: form.Dob,
+          Gender: form.Gender,
+        }),
       });
 
-      const data = await res.json()
+      const data = await res.json();
 
       console.log("STATUS :", res.status);
       console.log("DATA : ", data);
 
-      if(!res.ok){
-        seterror(data.message)
+      if (!res.ok) {
+        seterror(data.message);
         return;
       }
 
-      alert("Successfully")
+      alert("Successfully");
       seterror("");
-    }catch(err){
+    } catch (err) {
       console.log(err);
-      seterror("Server Error")
+      seterror("Server Error");
     }
-
 
     // navigate("/login");
   };

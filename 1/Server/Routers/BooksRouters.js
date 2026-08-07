@@ -12,7 +12,7 @@ const { PostBook,
     UserFindById } = require("../Controller/BookPostController");
 const { loginUser } = require("../Controller/UserController");
 
-router.put("/updateStaff", updateStaff)
+router.put("/updateStaff", updateStaff);
 router.post("/bookpost", PostBook);
 router.get("/bookget", GetBook);
 router.post("/register", PostUser);

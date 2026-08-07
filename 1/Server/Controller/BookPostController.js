@@ -31,19 +31,37 @@ exports.GetBook = async (req, res, next) => {
         next(err)
     }
 }
+
+
 exports.PostUser = async (req, res, next) => {
-    try {
-        const post = await user.create(req.body);
-        if (!post) {
-            return res.status(401).json({
-                Message: "NOT FOUND"
-            })
-        }
-        res.json(post);
-    } catch (err) {
-        next(err)
+  try {
+    const { email } = req.body;
+
+    // Check if email already exists
+    const existingUser = await user.findOne({ email });
+
+    if (existingUser) {
+        console.log("exit form reach");
+        
+      return res.status(409).json({
+        success: false,
+        message: "Email already exists"
+      });
     }
-}
+
+    // Create new user
+    const newUser = await user.create(req.body);
+
+    return res.status(201).json({
+      success: true,
+      message: "User created successfully",
+      data: newUser
+    });
+
+  } catch (err) {
+    next(err);
+  }
+};
 
 exports.GetUsers = async (req, res, next) => {
     try {
