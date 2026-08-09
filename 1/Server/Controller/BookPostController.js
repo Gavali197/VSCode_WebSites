@@ -18,6 +18,35 @@ exports.PostBook = async (req, res, next) => {
     }
 }
 
+exports.updateUser = async (req, res, next) => {
+    try {
+        const { id } = req.params;
+        const updateData = req.body;
+
+        const updatedUsesr = await book.findByIdAndUpdate(id, updateData, {
+            new: true,
+            runValidators: true
+        })
+
+        if (!updatedUsesr) {
+            return res.status(404).json({
+                message: "User NOt Found"
+            });
+        }
+
+        return res.status(401).json({
+            message: "User Data Updated Success",
+            data: updateData
+        })
+
+    } catch (err) {
+        // const errorHandler = "User Is noT maintable"
+        console.error(err)
+        next(err)
+    }
+}
+
+
 exports.GetBook = async (req, res, next) => {
     try {
         const get = await book.find();
@@ -34,33 +63,33 @@ exports.GetBook = async (req, res, next) => {
 
 
 exports.PostUser = async (req, res, next) => {
-  try {
-    const { email } = req.body;
+    try {
+        const { email } = req.body;
 
-    // Check if email already exists
-    const existingUser = await user.findOne({ email });
+        // Check if email already exists
+        const existingUser = await user.findOne({ email });
 
-    if (existingUser) {
-        console.log("exit form reach");
-        
-      return res.status(409).json({
-        success: false,
-        message: "Email already exists"
-      });
+        if (existingUser) {
+            console.log("exit form reach");
+
+            return res.status(409).json({
+                success: false,
+                message: "Email already exists"
+            });
+        }
+
+        // Create new user
+        const newUser = await user.create(req.body);
+
+        return res.status(201).json({
+            success: true,
+            message: "User created successfully",
+            data: newUser
+        });
+
+    } catch (err) {
+        next(err);
     }
-
-    // Create new user
-    const newUser = await user.create(req.body);
-
-    return res.status(201).json({
-      success: true,
-      message: "User created successfully",
-      data: newUser
-    });
-
-  } catch (err) {
-    next(err);
-  }
 };
 
 exports.GetUsers = async (req, res, next) => {
