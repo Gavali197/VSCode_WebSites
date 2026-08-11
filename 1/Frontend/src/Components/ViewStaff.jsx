@@ -21,6 +21,8 @@ const ViewStaff = () => {
     useEffect(()=>{
       getStaff();
     }, [])
+
+    
   return (
     <div>
       {/* a
