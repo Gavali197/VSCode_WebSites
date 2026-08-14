@@ -23,6 +23,7 @@ const ViewStaff = () => {
       getStaff();
     }, [])
 
+    //Handle data
     
   return (
     <div>
