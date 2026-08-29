@@ -1,55 +1,76 @@
-const user = require("../Models/User");
+const User = require("../Models/User");
 const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 
-exports.postUser = async (req, res, err) => {
+exports.postUser = async (req, res, next) => {
     try {
-        const { email } = req.body;
-        const isEmail = await user.findOne({ email })
+        const { email, password } = req.body;
 
-        if (isEmail) {
-            return res.status(401).json({
-                message: "This email was all ready Register"
-            })
+        // Validate input
+        if (!email || !password) {
+            return res.status(400).json({
+                message: "Email and password are required"
+            });
         }
 
-        const hashPass = await bcrypt.hash(req.body.password, 12);
+        // Check email
+        const isEmail = await User.findOne({ email });
 
+        if (isEmail) {
+            return res.status(409).json({
+                message: "This email is already registered"
+            });
+        }
+
+        // Hash password
+        const hashPass = await bcrypt.hash(password, 12);
+
+        // Keep other req.body fields
         const userData = {
             ...req.body,
             password: hashPass
         };
 
-        const post = await user.create(userData);
-        if (!post) {
-            return res.status(401).json({
-                message: "NOT ABLE TO POST"
-            })
-        }
-        res.json(post);
+        const post = await User.create(userData);
+
+        res.status(201).json({
+            message: "User registered successfully",
+            user: {
+                id: post._id,
+                email: post.email
+            }
+        });
+
     } catch (err) {
-        console.error("Facing error from Usercontroller " + err);
+        next(err);
     }
 };
 
+
 exports.getUser = async (req, res, next) => {
     try {
-
         const { email, password } = req.body;
 
         if (!email || !password) {
             return res.status(400).json({
-                message: "require email or password"
-            })
+                message: "Email and password are required"
+            });
         }
 
-        const findUser = await user.findOne({ email });
+        // Find user
+        const findUser = await User.findOne({ email });
 
         if (!findUser) {
             return res.status(401).json({
-                message: "invalid email password"
-            })
+                message: "Invalid email or password"
+            });
         }
-        const isMatch = await bcrypt.compare(password, findUser.password);
+
+        // Compare password
+        const isMatch = await bcrypt.compare(
+            password,
+            findUser.password
+        );
 
         if (!isMatch) {
             return res.status(401).json({
@@ -57,12 +78,24 @@ exports.getUser = async (req, res, next) => {
             });
         }
 
+        // Create JWT
+        const token = jwt.sign(
+            {
+                id: findUser._id,
+                email: findUser.email
+            },
+            process.env.JWT_SECRET,
+            {
+                expiresIn: "1h"
+            }
+        );
 
         res.status(200).json({
-            message: "Login Successfully"
-        })
-    } catch (err) {
-        console.log(err);
+            message: "Login successful",
+            token
+        });
 
+    } catch (err) {
+        next(err);
     }
-}
+};
