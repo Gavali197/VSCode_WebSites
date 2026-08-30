@@ -15,4 +15,5 @@ router.get("/profile", Auth, (req, res) => {
     });
 });
 
+
 module.exports = router;
