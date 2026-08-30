@@ -78,11 +78,13 @@ exports.getUser = async (req, res, next) => {
             });
         }
 
+        const role = findUser.role;
         // Create JWT
         const token = jwt.sign(
             {
                 id: findUser._id,
-                email: findUser.email
+                email: findUser.email,
+                
             },
             process.env.JWT_SECRET,
             {
@@ -92,7 +94,8 @@ exports.getUser = async (req, res, next) => {
 
         res.status(200).json({
             message: "Login successful",
-            token
+            token,
+            role
         });
 
     } catch (err) {
