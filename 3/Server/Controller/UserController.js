@@ -26,6 +26,28 @@ exports.findUser = async(req, res)=> {
     res.json(get);
 }
 
+exports.loginUser = async(req, res) => {
+    const {email, password } = req.body;
+    const findUser = await user.findOne({email});
+    
+    if(!findUser){
+        return res.status(404).json({
+            message : "invalid email id"
+        })
+    }
+
+    if(password !== findUser.password){
+        return res.status(404).json({
+            message : "Password not match"
+        })
+    }
+
+    res.status(200).json({
+        message : "Login successfully"
+    })
+
+}
+
 
 
 

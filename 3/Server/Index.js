@@ -1,5 +1,4 @@
 const express = require("express");
-const Router = require("Router");
 const app = express();
 const database = require("./Utils/dbConnect");
 const router = require("./Routers/UserRoute");
