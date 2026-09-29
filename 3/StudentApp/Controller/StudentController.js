@@ -1,6 +1,7 @@
 const student = require("../Model/StudentModel")
 const bcrypt = require("bcrypt")
 const session = require("express-session")
+const Product = require("../Model/Product")
 
 exports.register = async (req, res) => {
     try {
@@ -56,3 +57,45 @@ exports.login = async (req, res) => {
     res.redirect("/dashboard");
 
 }
+
+exports.productAdd = async (req, res) => {
+    try {
+        const post = await Product.create(req.body)
+        if (!post) {
+            return res.status(209).json({
+                message: "failed post",
+            })
+        }else{
+           res.status(201).send({data : post}) 
+        }
+
+    } catch (err) {
+        console.error("error from post side", err)
+    }
+}
+
+
+// exports.productGet = async (req, res) => {
+//     try {
+//         const post = await Product.find()
+//         if (!post) {
+//             return res.status(209).json({
+//                 message: "failed post"
+//             })
+//         }
+//         res.json({post})
+//     } catch (err) {
+//         console.error("error from post side", err)
+//     }
+// }
+
+
+
+exports.productGet = async (req, res) => {
+    try {
+        const products = await Product.find();
+        res.json({ data: products });
+    } catch (err) {
+        res.status(500).json({ message: err.message });
+    }
+};
